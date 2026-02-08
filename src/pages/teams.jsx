@@ -1,5 +1,7 @@
 import CardProduct from "../components/Fragments/CardTeam";
+import Button from "../components/Elements/Button";
 
+// Rendering lists
 const teams = [
   {
     id: 1,
@@ -109,32 +111,54 @@ const teams = [
   },
 ];
 
+const email = localStorage.getItem("email");
+
 const TeamsPage = () => {
+  // Event handler for logout
+  const handleLogout = () => {
+    localStorage.removeItem("email");
+    localStorage.removeItem("password");
+    window.location.href = "/login";
+  };
+
   return (
-    <div
-      className="flex justify-center gap-8 flex-wrap"
-      style={{
-        background: "linear-gradient(to right, #15151d 0%, #15151d 100%)",
-      }}>
+    <>
+      <div
+        className="flex justify-end text-white h-18 text-xl font-bold px-4 items-center gap-4"
+        style={{
+          background: "linear-gradient(to right, #15151d 100%, #15151d 0%)",
+        }}>
+        {email}
+        <Button
+          className="bg-blue-600 hover:bg-blue-800 text-white px-4 py-2 rounded-md"
+          onClick={handleLogout}>
+          Logout
+        </Button>
+      </div>
+      <div
+        className="flex justify-center gap-8 flex-wrap"
+        style={{
+          background: "linear-gradient(to right, #15151d 0%, #15151d 100%)",
+        }}>
+        <h1 className="w-full text-left mb-4 text-4xl px-4 pl-16">
+          <span className="text-3xl font-bold text-white">F1 Team 2026</span>
+        </h1>
 
-      <h1 className="w-full text-left mb-4 text-4xl mt-8 px-4 pl-16">
-        <span className="text-3xl font-bold text-white">F1 Team 2026</span>
-      </h1>
-
-      {teams.map((team) => (
-        <CardProduct key={team.id} bgColor={team.color}>
-          <CardProduct.Header image={team.image} />
-          <CardProduct.Body title={team.name}>
-            {team.description}
-          </CardProduct.Body>
-          <CardProduct.Footer
-            driver1={team.driver1}
-            driver2={team.driver2}
-            link={team.link}
-          />
-        </CardProduct>
-      ))}
-    </div>
+        {teams.map((team) => (
+          <CardProduct key={team.id} bgColor={team.color}>
+            <CardProduct.Header image={team.image} />
+            <CardProduct.Body title={team.name}>
+              {team.description}
+            </CardProduct.Body>
+            <CardProduct.Footer
+              driver1={team.driver1}
+              driver2={team.driver2}
+              link={team.link}
+            />
+          </CardProduct>
+        ))}
+      </div>
+    </>
   );
 };
 

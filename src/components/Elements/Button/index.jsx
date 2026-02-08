@@ -1,5 +1,11 @@
 const Button = (props) => {
-  const { children, className , href} = props;
+  const {
+    children,
+    className,
+    href,
+    onClick = () => {},
+    type = "button",
+  } = props;
 
   if (href) {
     return (
@@ -13,8 +19,9 @@ const Button = (props) => {
 
   return (
     <button
-      className={`px-4 py-2 font-semibold text-white ${className} rounded hover:bg-blue-800`}
-      type="submit">
+      className={`px-2 py-1 font-semibold text-white ${className} rounded hover:bg-blue-800 `}
+      type={type}
+      onClick={() => onClick()}>
       {children || "Click me"}
     </button>
   );

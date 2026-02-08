@@ -1,5 +1,6 @@
 import Button from "../Elements/Button";
 
+// Nested component structure for CardTeam
 const CardTeam = (props) => {
   const { children, bgColor = "bg-blue-950" } = props;
   return (

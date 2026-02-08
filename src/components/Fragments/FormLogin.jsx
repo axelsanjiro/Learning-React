@@ -1,9 +1,17 @@
-import InputForm  from "../Elements/Input";
+import InputForm from "../Elements/Input";
 import Button from "../Elements/Button";
 
 const FormLogin = () => {
+  // Event handler for login
+  const handleLogin = (event) => {
+    event.preventDefault();
+    localStorage.setItem("email", event.target.email.value);
+    localStorage.setItem("password", event.target.password.value);
+    window.location.href = "/teams";
+  };
+
   return (
-    <form action="">
+    <form onSubmit={handleLogin}>
       <InputForm
         label="Email"
         type="email"
@@ -16,7 +24,9 @@ const FormLogin = () => {
         placeholder="Enter your password"
         name="password"
       />
-      <Button classname="bg-blue-600 w-full mt-4">Login</Button>
+      <Button className="bg-blue-600 w-full mt-4" type="submit">
+        Login
+      </Button>
     </form>
   );
 };
